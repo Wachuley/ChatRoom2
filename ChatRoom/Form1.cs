@@ -56,10 +56,7 @@ namespace ChatRoom
 
         private void IniciarSesionBtn_Click(object sender, EventArgs e)
         {
-            IniciarSesion login = new IniciarSesion();
-            if (login.ShowDialog() == DialogResult.OK) { 
-                this.Close();
-            }
+            //button de inicio de sesion
         }
     }
 
