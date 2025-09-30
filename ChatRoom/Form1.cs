@@ -56,7 +56,7 @@ namespace ChatRoom
 
         private void IniciarSesionBtn_Click(object sender, EventArgs e)
         {
-            //button de inicio de sesion
+            //nota de prueba
         }
     }
 
