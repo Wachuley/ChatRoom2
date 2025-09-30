@@ -18,11 +18,6 @@ namespace ChatRoom
             InitializeComponent();
         }
 
-
-
-        
-
-
         private void Inicio_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
