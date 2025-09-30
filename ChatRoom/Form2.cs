@@ -37,7 +37,7 @@ namespace ChatRoom
 
             conn = new MySqlConnection("server=127.0.0.1;uid=root;database=ChatRoom");
             conn.Open();
-            //intentando verificar contraseña :p send help para la encriptacion
+            //intentando verificar contraseña :p send help para la encriptacion yes
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM usuarios WHERE id_usuario = @id"); //(? idk
         }
     }
