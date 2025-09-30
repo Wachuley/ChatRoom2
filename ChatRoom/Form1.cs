@@ -11,17 +11,29 @@ using System.Windows.Forms;
 
 namespace ChatRoom
 {
-    public partial class Inicio : Form
+    public partial class STARTMENU : Form
     {
-        public Inicio()
+        public STARTMENU()
         {
             InitializeComponent();
         }
 
+
+
+        
+
+
         private void Inicio_Load(object sender, EventArgs e)
         {
-            ConfigurarBotonRedondo(IniciarSesionBtn, 15); 
-            ConfigurarBotonRedondo(registrarse, 15);
+            this.TopMost = true;
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
+            
+            startmenulayout.Visible = true;
+            loginmenulayout.Visible = false;
+            registermenulayout.Visible = false;
+
+
         }
 
         private void ConfigurarBotonRedondo(Button boton, int radio)
@@ -57,6 +69,62 @@ namespace ChatRoom
         private void IniciarSesionBtn_Click(object sender, EventArgs e)
         {
             //nota de prueba
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            loginmenulayout.Visible = true;
+            startmenulayout.Visible = false;
+            registermenulayout.Visible = false;
+
+
+
+        }
+
+        private void registerButton_Click(object sender, EventArgs e)
+        {
+            registermenulayout.Visible = true;
+            startmenulayout.Visible = false;
+            loginmenulayout.Visible = false;
+        }
+
+        private void registerbackbutton_Click(object sender, EventArgs e)
+        {
+            startmenulayout.Visible = true;
+            loginmenulayout.Visible = false;
+            registermenulayout.Visible = false;
+        }
+
+        private void loginBackButton_Click(object sender, EventArgs e)
+        {
+            startmenulayout.Visible = true;
+            loginmenulayout.Visible = false;
+            registermenulayout.Visible = false;
+        }
+
+        private void exitbutton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void passwordlogin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginuserbutton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
