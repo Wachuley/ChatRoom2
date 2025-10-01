@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.startmenulayout = new System.Windows.Forms.TableLayoutPanel();
-            this.loginButton = new System.Windows.Forms.Button();
             this.MainLogo = new System.Windows.Forms.PictureBox();
+            this.loginButton = new System.Windows.Forms.Button();
             this.registerButton = new System.Windows.Forms.Button();
+            this.exitbutton = new System.Windows.Forms.Button();
             this.loginmenulayout = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.loginBackButton = new System.Windows.Forms.Button();
             this.userlogin = new System.Windows.Forms.TextBox();
             this.passwordlogin = new System.Windows.Forms.TextBox();
             this.loginuserbutton = new System.Windows.Forms.Button();
+            this.loginBackButton = new System.Windows.Forms.Button();
             this.registermenulayout = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.registeruser = new System.Windows.Forms.TextBox();
-            this.registeruserbutton = new System.Windows.Forms.Button();
-            this.registerbackbutton = new System.Windows.Forms.Button();
             this.registerpassword = new System.Windows.Forms.TextBox();
             this.confirmpassword = new System.Windows.Forms.TextBox();
-            this.exitbutton = new System.Windows.Forms.Button();
+            this.registeruserbutton = new System.Windows.Forms.Button();
+            this.registerbackbutton = new System.Windows.Forms.Button();
             this.startmenulayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainLogo)).BeginInit();
             this.loginmenulayout.SuspendLayout();
@@ -79,17 +79,6 @@
             this.startmenulayout.Visible = false;
             this.startmenulayout.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // loginButton
-            // 
-            this.loginButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.loginButton.Location = new System.Drawing.Point(298, 160);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(203, 23);
-            this.loginButton.TabIndex = 0;
-            this.loginButton.Text = "Iniciar sesión";
-            this.loginButton.UseVisualStyleBackColor = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
-            // 
             // MainLogo
             // 
             this.MainLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -101,6 +90,17 @@
             this.MainLogo.TabIndex = 2;
             this.MainLogo.TabStop = false;
             // 
+            // loginButton
+            // 
+            this.loginButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.loginButton.Location = new System.Drawing.Point(298, 160);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(203, 23);
+            this.loginButton.TabIndex = 0;
+            this.loginButton.Text = "Iniciar sesión";
+            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
             // registerButton
             // 
             this.registerButton.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -111,6 +111,17 @@
             this.registerButton.Text = "Registrar nueva cuenta";
             this.registerButton.UseVisualStyleBackColor = true;
             this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
+            // 
+            // exitbutton
+            // 
+            this.exitbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.exitbutton.Location = new System.Drawing.Point(296, 256);
+            this.exitbutton.Name = "exitbutton";
+            this.exitbutton.Size = new System.Drawing.Size(207, 23);
+            this.exitbutton.TabIndex = 3;
+            this.exitbutton.Text = "Salir";
+            this.exitbutton.UseVisualStyleBackColor = true;
+            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
             // 
             // loginmenulayout
             // 
@@ -149,35 +160,31 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // loginBackButton
-            // 
-            this.loginBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.loginBackButton.Location = new System.Drawing.Point(298, 265);
-            this.loginBackButton.Name = "loginBackButton";
-            this.loginBackButton.Size = new System.Drawing.Size(203, 23);
-            this.loginBackButton.TabIndex = 0;
-            this.loginBackButton.Text = "Volver";
-            this.loginBackButton.UseVisualStyleBackColor = true;
-            this.loginBackButton.Click += new System.EventHandler(this.loginBackButton_Click);
-            // 
             // userlogin
             // 
             this.userlogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.userlogin.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.userlogin.Location = new System.Drawing.Point(319, 147);
             this.userlogin.Name = "userlogin";
             this.userlogin.Size = new System.Drawing.Size(162, 22);
             this.userlogin.TabIndex = 3;
             this.userlogin.Text = "Usuario";
+            this.userlogin.TextChanged += new System.EventHandler(this.userlogin_TextChanged);
+            this.userlogin.Enter += new System.EventHandler(this.userlogin_Enter);
+            this.userlogin.Leave += new System.EventHandler(this.userlogin_Leave);
             // 
             // passwordlogin
             // 
             this.passwordlogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.passwordlogin.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.passwordlogin.Location = new System.Drawing.Point(321, 193);
             this.passwordlogin.Name = "passwordlogin";
             this.passwordlogin.Size = new System.Drawing.Size(158, 22);
             this.passwordlogin.TabIndex = 4;
             this.passwordlogin.Text = "Contraseña";
             this.passwordlogin.TextChanged += new System.EventHandler(this.passwordlogin_TextChanged);
+            this.passwordlogin.Enter += new System.EventHandler(this.passwordlogin_Enter);
+            this.passwordlogin.Leave += new System.EventHandler(this.passwordlogin_Leave);
             // 
             // loginuserbutton
             // 
@@ -189,6 +196,17 @@
             this.loginuserbutton.Text = "Iniciar sesión";
             this.loginuserbutton.UseVisualStyleBackColor = true;
             this.loginuserbutton.Click += new System.EventHandler(this.loginuserbutton_Click);
+            // 
+            // loginBackButton
+            // 
+            this.loginBackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.loginBackButton.Location = new System.Drawing.Point(298, 265);
+            this.loginBackButton.Name = "loginBackButton";
+            this.loginBackButton.Size = new System.Drawing.Size(203, 23);
+            this.loginBackButton.TabIndex = 0;
+            this.loginBackButton.Text = "Volver";
+            this.loginBackButton.UseVisualStyleBackColor = true;
+            this.loginBackButton.Click += new System.EventHandler(this.loginBackButton_Click);
             // 
             // registermenulayout
             // 
@@ -232,11 +250,41 @@
             // registeruser
             // 
             this.registeruser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.registeruser.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.registeruser.Location = new System.Drawing.Point(301, 145);
             this.registeruser.Name = "registeruser";
             this.registeruser.Size = new System.Drawing.Size(198, 22);
             this.registeruser.TabIndex = 3;
             this.registeruser.Text = "Usuario";
+            this.registeruser.TextChanged += new System.EventHandler(this.registeruser_TextChanged);
+            this.registeruser.Enter += new System.EventHandler(this.registeruser_Enter);
+            this.registeruser.Leave += new System.EventHandler(this.registeruser_Leave);
+            // 
+            // registerpassword
+            // 
+            this.registerpassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.registerpassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.registerpassword.Location = new System.Drawing.Point(301, 189);
+            this.registerpassword.Name = "registerpassword";
+            this.registerpassword.Size = new System.Drawing.Size(197, 22);
+            this.registerpassword.TabIndex = 6;
+            this.registerpassword.Text = "Contraseña";
+            this.registerpassword.TextChanged += new System.EventHandler(this.registerpassword_TextChanged);
+            this.registerpassword.Enter += new System.EventHandler(this.registerpassword_Enter);
+            this.registerpassword.Leave += new System.EventHandler(this.registerpassword_Leave);
+            // 
+            // confirmpassword
+            // 
+            this.confirmpassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.confirmpassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.confirmpassword.Location = new System.Drawing.Point(301, 217);
+            this.confirmpassword.Name = "confirmpassword";
+            this.confirmpassword.Size = new System.Drawing.Size(197, 22);
+            this.confirmpassword.TabIndex = 7;
+            this.confirmpassword.Text = "Confirmar contraseña";
+            this.confirmpassword.TextChanged += new System.EventHandler(this.confirmpassword_TextChanged);
+            this.confirmpassword.Enter += new System.EventHandler(this.confirmpassword_Enter);
+            this.confirmpassword.Leave += new System.EventHandler(this.confirmpassword_Leave);
             // 
             // registeruserbutton
             // 
@@ -247,6 +295,7 @@
             this.registeruserbutton.TabIndex = 5;
             this.registeruserbutton.Text = "Registrar";
             this.registeruserbutton.UseVisualStyleBackColor = true;
+            this.registeruserbutton.Click += new System.EventHandler(this.registeruserbutton_Click);
             // 
             // registerbackbutton
             // 
@@ -259,36 +308,6 @@
             this.registerbackbutton.UseVisualStyleBackColor = true;
             this.registerbackbutton.Click += new System.EventHandler(this.registerbackbutton_Click);
             // 
-            // registerpassword
-            // 
-            this.registerpassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.registerpassword.Location = new System.Drawing.Point(301, 189);
-            this.registerpassword.Name = "registerpassword";
-            this.registerpassword.Size = new System.Drawing.Size(197, 22);
-            this.registerpassword.TabIndex = 6;
-            this.registerpassword.Text = "Contraseña";
-            this.registerpassword.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // confirmpassword
-            // 
-            this.confirmpassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.confirmpassword.Location = new System.Drawing.Point(301, 217);
-            this.confirmpassword.Name = "confirmpassword";
-            this.confirmpassword.Size = new System.Drawing.Size(197, 22);
-            this.confirmpassword.TabIndex = 7;
-            this.confirmpassword.Text = "Confirmar contraseña";
-            // 
-            // exitbutton
-            // 
-            this.exitbutton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.exitbutton.Location = new System.Drawing.Point(296, 256);
-            this.exitbutton.Name = "exitbutton";
-            this.exitbutton.Size = new System.Drawing.Size(207, 23);
-            this.exitbutton.TabIndex = 3;
-            this.exitbutton.Text = "Salir";
-            this.exitbutton.UseVisualStyleBackColor = true;
-            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
-            // 
             // STARTMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -296,8 +315,8 @@
             this.BackgroundImage = global::ChatRoom.Properties.Resources.Captura_de_pantalla_2025_09_30_151744;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.loginmenulayout);
-            this.Controls.Add(this.startmenulayout);
             this.Controls.Add(this.registermenulayout);
+            this.Controls.Add(this.startmenulayout);
             this.Name = "STARTMENU";
             this.Text = "ChatRoom";
             this.Load += new System.EventHandler(this.Inicio_Load);
