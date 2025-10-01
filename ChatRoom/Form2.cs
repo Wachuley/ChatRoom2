@@ -33,8 +33,9 @@ namespace ChatRoom
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            _mainForm.Show(); // show Form1 again
-            this.Close();     // close Form2
+            STARTMENU menu = new STARTMENU();
+            menu.Show();
+            this.Close();
 
         }
         

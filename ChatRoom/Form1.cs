@@ -97,7 +97,7 @@ namespace ChatRoom
         //iniciar sesion
         private void loginuserbutton_Click(object sender, EventArgs e)
         {
-            if(userlogin.Text == "root" && passwordlogin.Text == "root")
+             if (userlogin.Text == "root" && passwordlogin.Text == "root")
             {
                 Form2 f = new Form2(this);
                 f.Show();
@@ -107,6 +107,13 @@ namespace ChatRoom
             {
                 //Mostrar texto de error
             }
+
+            userlogin.Text = "Usuario";
+            userlogin.ForeColor = Color.Gray;
+            passwordlogin.Text = "Contraseña";
+            passwordlogin.ForeColor = Color.Gray;
+            passwordlogin.UseSystemPasswordChar = false;
+            passwordlogin.PasswordChar = '\0';
         }
         //volver al menu principal
         private void loginBackButton_Click(object sender, EventArgs e)
@@ -114,11 +121,27 @@ namespace ChatRoom
             startmenulayout.Visible = true;
             loginmenulayout.Visible = false;
             registermenulayout.Visible = false;
+            userlogin.Text = "Usuario";
+            userlogin.ForeColor = Color.Gray;
+            passwordlogin.Text = "Contraseña";
+            passwordlogin.ForeColor = Color.Gray;
+            passwordlogin.UseSystemPasswordChar = false;
+            passwordlogin.PasswordChar = '\0';
         }
         //Menu register ***************
+        //registrarse
         private void registeruserbutton_Click(object sender, EventArgs e)
         {
-
+            registeruser.Text = "Usuario";
+            registeruser.ForeColor = Color.Gray;
+            registerpassword.Text = "Contraseña";
+            registerpassword.ForeColor = Color.Gray;
+            registerpassword.UseSystemPasswordChar = false;
+            registerpassword.PasswordChar = '\0';
+            confirmpassword.Text = "Confirmar Contraseña";
+            confirmpassword.ForeColor = Color.Gray;
+            confirmpassword.UseSystemPasswordChar = false;
+            confirmpassword.PasswordChar = '\0';
         }
         //volver al menu principal
         private void registerbackbutton_Click(object sender, EventArgs e)
@@ -126,6 +149,16 @@ namespace ChatRoom
             startmenulayout.Visible = true;
             loginmenulayout.Visible = false;
             registermenulayout.Visible = false;
+            registeruser.Text = "Usuario";
+            registeruser.ForeColor = Color.Gray;
+            registerpassword.Text = "Contraseña";
+            registerpassword.ForeColor = Color.Gray;
+            registerpassword.UseSystemPasswordChar = false; //Estos bloques de codigo son temporales
+            registerpassword.PasswordChar = '\0';
+            confirmpassword.Text = "Confirmar Contraseña"; //luego veo como lo optimizo 
+            confirmpassword.ForeColor = Color.Gray;
+            confirmpassword.UseSystemPasswordChar = false;
+            confirmpassword.PasswordChar = '\0';
         }
 
         //EVENTOS TEXTBOX -----------------------------------------------------------
