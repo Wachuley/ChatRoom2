@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,10 +13,10 @@ using System.Windows.Forms;
 
 namespace ChatRoom
 {
-    
-
     public partial class STARTMENU : Form
     {
+        private string connection = "server=127.0.0.1;uid=root;pwd=root;database=ChatRoom";
+
         public STARTMENU()
         {
             InitializeComponent();
@@ -25,9 +27,9 @@ namespace ChatRoom
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.TopMost = true;
+            //this.WindowState = FormWindowState.Maximized;
+            //this.FormBorderStyle = FormBorderStyle.None;
             
             startmenulayout.Visible = true;
             loginmenulayout.Visible = false;
@@ -97,7 +99,7 @@ namespace ChatRoom
         //iniciar sesion
         private void loginuserbutton_Click(object sender, EventArgs e)
         {
-             if (userlogin.Text == "root" && passwordlogin.Text == "root")
+            if (userlogin.Text == "root" && passwordlogin.Text == "root")
             {
                 Form2 f = new Form2(this);
                 f.Show();
@@ -107,6 +109,34 @@ namespace ChatRoom
             {
                 //Mostrar texto de error
             }
+            
+            //Validación del usuario y su contraseña
+            if (string.IsNullOrEmpty(userlogin.Text) || userlogin.Text == "Usuario" ||
+                string.IsNullOrEmpty(passwordlogin.Text) || passwordlogin.Text == "Contraseña")
+            {
+                MessageBox.Show("Ingresa un usuario y contraseña");
+                return;
+            }
+
+            MySqlConnection conn = new MySqlConnection(connection);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM usuarios WHERE nombre_usuario = @user AND contraseña = @pass", conn);
+            cmd.Parameters.AddWithValue("@user", userlogin.Text);
+            cmd.Parameters.AddWithValue("@pass", Crypto.Encrypt(passwordlogin.Text));
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                int usuarioId = reader.GetInt32("id_usuario");
+                string nombreUsuario = reader.GetString("nombre_usuario");
+                //Se pasan los datos al Form2
+                MessageBox.Show("Inicio de sesión exitoso"); //Para comprobar y luego lo quitamos (?
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos");
+            }
+
 
             userlogin.Text = "Usuario";
             userlogin.ForeColor = Color.Gray;
@@ -129,9 +159,45 @@ namespace ChatRoom
             passwordlogin.PasswordChar = '\0';
         }
         //Menu register ***************
+
         //registrarse
         private void registeruserbutton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(registeruser.Text) || string.IsNullOrEmpty(registerpassword.Text)
+                                                        || string.IsNullOrEmpty(confirmpassword.Text)) {
+                MessageBox.Show("Ingresa un usuario y contraseña");
+                return;
+            }
+
+            if(registerpassword.Text != confirmpassword.Text)
+            {
+                MessageBox.Show("Las contraseñas deben coincidir");
+                return;
+            }
+
+            MySqlConnection conn = new MySqlConnection(connection);
+            conn.Open();
+
+            MySqlCommand verificacion = new MySqlCommand("SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = @us", conn);
+            verificacion.Parameters.AddWithValue("@us", registeruser.Text);
+
+            int count = Convert.ToInt32(verificacion.ExecuteScalar());
+
+            if (count > 0)
+            {
+                MessageBox.Show("Este nombre de usuario ya está en uso");
+                return;
+            }
+
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO usuarios (nombre_usuario, contraseña) VALUES (@user, @pass)", conn);
+            cmd.Parameters.AddWithValue("@user", registeruser.Text);
+            cmd.Parameters.AddWithValue("@pass", Crypto.Encrypt(registerpassword.Text));
+
+            int filasAfectadas = cmd.ExecuteNonQuery();
+
+            if (filasAfectadas > 0)
+                MessageBox.Show("Usuario registrado con éxito");
+
             registeruser.Text = "Usuario";
             registeruser.ForeColor = Color.Gray;
             registerpassword.Text = "Contraseña";
@@ -142,6 +208,7 @@ namespace ChatRoom
             confirmpassword.ForeColor = Color.Gray;
             confirmpassword.UseSystemPasswordChar = false;
             confirmpassword.PasswordChar = '\0';
+
         }
         //volver al menu principal
         private void registerbackbutton_Click(object sender, EventArgs e)
@@ -190,7 +257,7 @@ namespace ChatRoom
         public static class Crypto
         {
             private static string key = "claveFija";
-            private static string Encrypt(string text)
+            public static string Encrypt(string text)
             {
                 byte[] datos = Encoding.UTF8.GetBytes(text);
                 byte[] claveBytes = Encoding.UTF8.GetBytes(key);
@@ -203,7 +270,7 @@ namespace ChatRoom
                 return Convert.ToBase64String(resultado);
             }
 
-            private static string Decrypt(string text)
+            public static string Decrypt(string text)
             {
                 byte[] datos = Convert.FromBase64String(text);
                 byte[] claveBytes = Encoding.UTF8.GetBytes(key);
