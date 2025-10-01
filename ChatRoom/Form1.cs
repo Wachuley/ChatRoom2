@@ -121,6 +121,37 @@ namespace ChatRoom
         {
 
         }
+
+        //1ra prueba para encriptacion y desencriptacion bestis :)
+        public static class Crypto
+        {
+            private static string key = "claveFija";
+            private static string Encrypt(string text)
+            {
+                byte[] datos = Encoding.UTF8.GetBytes(text);
+                byte[] claveBytes = Encoding.UTF8.GetBytes(key);
+                byte[] resultado = new byte[datos.Length];
+
+                for(int i = 0; i < datos.Length; i++)
+                {
+                    resultado[i] = (byte)(datos[i] ^ claveBytes[i % claveBytes.Length]);
+                }
+                return Convert.ToBase64String(resultado);
+            }
+
+            private static string Decrypt(string text)
+            {
+                byte[] datos = Convert.FromBase64String(text);
+                byte[] claveBytes = Encoding.UTF8.GetBytes(key);
+                byte[] resultado = new byte[datos.Length];
+
+                for(int i = 0; i < datos.Length; i++)
+                {
+                    resultado[i] = (byte)(datos[i] ^ claveBytes[i % claveBytes.Length]);
+                }
+                return Encoding.UTF8.GetString(resultado);
+            }
+        }
     }
 
 
