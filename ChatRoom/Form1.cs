@@ -20,6 +20,9 @@ namespace ChatRoom
             InitializeComponent();
         }
 
+        //DECLARACION DE VARIABLES EXTRA -----------------------------------------------------------
+        Form f = null;
+
         private void Inicio_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
@@ -94,7 +97,16 @@ namespace ChatRoom
         //iniciar sesion
         private void loginuserbutton_Click(object sender, EventArgs e)
         {
-
+            if(userlogin.Text == "root" && passwordlogin.Text == "root")
+            {
+                Form2 f = new Form2(this);
+                f.Show();
+                this.Hide();
+            }
+            else
+            {
+                //Mostrar texto de error
+            }
         }
         //volver al menu principal
         private void loginBackButton_Click(object sender, EventArgs e)
@@ -198,6 +210,7 @@ namespace ChatRoom
                 registerpassword.Text = "";
                 registerpassword.ForeColor = Color.Black;
                 registerpassword.UseSystemPasswordChar = true;
+                registerpassword.PasswordChar = '*';
             }
         }
         private void registerpassword_Leave(object sender, EventArgs e)
@@ -207,6 +220,7 @@ namespace ChatRoom
                 registerpassword.Text = "Contraseña";
                 registerpassword.ForeColor = Color.Gray;
                 registerpassword.UseSystemPasswordChar = false;
+                registerpassword.PasswordChar = '\0';
             }
         }
         //confirmregisterpassword
@@ -217,6 +231,7 @@ namespace ChatRoom
                 confirmpassword.Text = "";
                 confirmpassword.ForeColor = Color.Black;
                 confirmpassword.UseSystemPasswordChar = true;
+                confirmpassword.PasswordChar = '*';
             }
         }
         private void confirmpassword_Leave(object sender, EventArgs e)
@@ -226,6 +241,7 @@ namespace ChatRoom
                 confirmpassword.Text = "Confirmar Contraseña";
                 confirmpassword.ForeColor = Color.Gray;
                 confirmpassword.UseSystemPasswordChar = false;
+                confirmpassword.PasswordChar = '\0';
             }
         }
         //userlogin
@@ -253,6 +269,7 @@ namespace ChatRoom
                 passwordlogin.Text = "";
                 passwordlogin.ForeColor = Color.Black;
                 passwordlogin.UseSystemPasswordChar = true;
+                passwordlogin.PasswordChar= '*';
             }
         }
         private void passwordlogin_Leave(object sender, EventArgs e)
@@ -262,6 +279,7 @@ namespace ChatRoom
                 passwordlogin.Text = "Contraseña";
                 passwordlogin.ForeColor = Color.Gray;
                 passwordlogin.UseSystemPasswordChar = false;
+                passwordlogin.PasswordChar = '\0';
             }
         }
     }
