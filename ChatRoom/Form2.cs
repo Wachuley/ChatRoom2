@@ -22,9 +22,9 @@ namespace ChatRoom
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.TopMost = true;
+            //this.WindowState = FormWindowState.Maximized;
+            //this.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,7 +38,15 @@ namespace ChatRoom
             this.Close();
 
         }
-        
 
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

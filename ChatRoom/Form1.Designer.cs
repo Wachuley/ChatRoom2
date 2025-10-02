@@ -314,9 +314,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ChatRoom.Properties.Resources.Captura_de_pantalla_2025_09_30_151744;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.startmenulayout);
             this.Controls.Add(this.loginmenulayout);
             this.Controls.Add(this.registermenulayout);
-            this.Controls.Add(this.startmenulayout);
             this.Name = "STARTMENU";
             this.Text = "ChatRoom";
             this.Load += new System.EventHandler(this.Inicio_Load);

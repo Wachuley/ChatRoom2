@@ -1,14 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChatRoom
@@ -30,7 +23,7 @@ namespace ChatRoom
             //this.TopMost = true;
             //this.WindowState = FormWindowState.Maximized;
             //this.FormBorderStyle = FormBorderStyle.None;
-            
+
             startmenulayout.Visible = true;
             loginmenulayout.Visible = false;
             registermenulayout.Visible = false;
@@ -77,7 +70,7 @@ namespace ChatRoom
         //EVENTOS BOTONES -----------------------------------------------------------
         //Menu principal ***************
         //iniciar sesión
-        private void loginButton_Click(object sender, EventArgs e) 
+        private void loginButton_Click(object sender, EventArgs e)
         {
             loginmenulayout.Visible = true;
             startmenulayout.Visible = false;
@@ -109,7 +102,7 @@ namespace ChatRoom
             {
                 //Mostrar texto de error
             }
-            
+
             //Validación del usuario y su contraseña
             if (string.IsNullOrEmpty(userlogin.Text) || userlogin.Text == "Usuario" ||
                 string.IsNullOrEmpty(passwordlogin.Text) || passwordlogin.Text == "Contraseña")
@@ -164,12 +157,13 @@ namespace ChatRoom
         private void registeruserbutton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(registeruser.Text) || string.IsNullOrEmpty(registerpassword.Text)
-                                                        || string.IsNullOrEmpty(confirmpassword.Text)) {
+                                                        || string.IsNullOrEmpty(confirmpassword.Text))
+            {
                 MessageBox.Show("Ingresa un usuario y contraseña");
                 return;
             }
 
-            if(registerpassword.Text != confirmpassword.Text)
+            if (registerpassword.Text != confirmpassword.Text)
             {
                 MessageBox.Show("Las contraseñas deben coincidir");
                 return;
@@ -263,7 +257,7 @@ namespace ChatRoom
                 byte[] claveBytes = Encoding.UTF8.GetBytes(key);
                 byte[] resultado = new byte[datos.Length];
 
-                for(int i = 0; i < datos.Length; i++)
+                for (int i = 0; i < datos.Length; i++)
                 {
                     resultado[i] = (byte)(datos[i] ^ claveBytes[i % claveBytes.Length]);
                 }
@@ -276,7 +270,7 @@ namespace ChatRoom
                 byte[] claveBytes = Encoding.UTF8.GetBytes(key);
                 byte[] resultado = new byte[datos.Length];
 
-                for(int i = 0; i < datos.Length; i++)
+                for (int i = 0; i < datos.Length; i++)
                 {
                     resultado[i] = (byte)(datos[i] ^ claveBytes[i % claveBytes.Length]);
                 }
@@ -288,7 +282,7 @@ namespace ChatRoom
         //registeruser
         private void registeruser_Enter(object sender, EventArgs e)
         {
-            if(registeruser.Text == "Usuario")
+            if (registeruser.Text == "Usuario")
             {
                 registeruser.Text = "";
                 registeruser.ForeColor = Color.Black;
@@ -369,7 +363,7 @@ namespace ChatRoom
                 passwordlogin.Text = "";
                 passwordlogin.ForeColor = Color.Black;
                 passwordlogin.UseSystemPasswordChar = true;
-                passwordlogin.PasswordChar= '*';
+                passwordlogin.PasswordChar = '*';
             }
         }
         private void passwordlogin_Leave(object sender, EventArgs e)
