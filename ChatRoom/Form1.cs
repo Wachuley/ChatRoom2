@@ -92,16 +92,16 @@ namespace ChatRoom
         //iniciar sesion
         private void loginuserbutton_Click(object sender, EventArgs e)
         {
-            if (userlogin.Text == "root" && passwordlogin.Text == "root")
-            {
-                Form2 f = new Form2(this);
-                f.Show();
-                this.Hide();
-            }
-            else
-            {
-                //Mostrar texto de error
-            }
+            //if (userlogin.Text == "root" && passwordlogin.Text == "root")
+            //{
+            //    Form2 f = new Form2(this);
+            //    f.Show();
+            //    this.Hide();
+            //}
+            //else
+            //{
+            //    //Mostrar texto de error
+            //}
 
             //Validación del usuario y su contraseña
             if (string.IsNullOrEmpty(userlogin.Text) || userlogin.Text == "Usuario" ||
@@ -122,8 +122,9 @@ namespace ChatRoom
             {
                 int usuarioId = reader.GetInt32("id_usuario");
                 string nombreUsuario = reader.GetString("nombre_usuario");
-                //Se pasan los datos al Form2
-                MessageBox.Show("Inicio de sesión exitoso"); //Para comprobar y luego lo quitamos (?
+                Form2 f = new Form2(this, usuarioId, nombreUsuario);
+                f.Show();
+                this.Hide();
             }
             else
             {

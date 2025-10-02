@@ -8,16 +8,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChatRoom;
+using MySql.Data.MySqlClient;
 
 namespace ChatRoom
 {
     public partial class Form2: Form
     {
         private STARTMENU _mainForm;
-        public Form2(STARTMENU mainForm)
+        private string connection = "server=127.0.0.1;uid=root;pwd=root;database=ChatRoom";
+        public Form2(STARTMENU mainForm, int userId, string userName)
         {
             InitializeComponent();
             _mainForm = mainForm;
+            MuestraUsuario(userId, userName);
+        }
+
+        private void MuestraUsuario(int userid, string username)
+        {
+            MySqlConnection conn = new MySqlConnection(connection);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM usuarios WHERE id_usuario = @id", conn);
+            cmd.Parameters.AddWithValue("@id", userid);
+
+            MySqlDataReader Reader = cmd.ExecuteReader();
+            if (Reader.Read())
+            {
+                label1.Text = Reader.GetString("nombre_usuario");
+            }
+
         }
 
         private void Form2_Load(object sender, EventArgs e)
